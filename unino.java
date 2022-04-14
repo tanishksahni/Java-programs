@@ -1,4 +1,6 @@
-//Find the unique number in an array of n integers. A unique is a number over which the last iteration ends, on rotating the entire array r times.  
+// Find the unique number in an array of n integers. A unique is a number over which the last iteration ends, on rotating the entire array r times. 
+// The movement parameter for the array will be the integer at the point of iteration.
+   
 import java.util.*;
 class unino
 {
