@@ -17,11 +17,10 @@ class chainrxn
             System.out.println();
         }
     }
-    void setvalue(String arr[][],String val,int x,int y)
+    void setvalue(String arr[][],int number[][],String val,int x,int y)
     {
-        arr[x][y]= val;
-
-
+        arr[x-1][y-1]= val;
+        number[x-1][y-1]++;
     }
 
 
@@ -55,6 +54,41 @@ class chainrxn
         }
             
     }
+    void check(String arr[][],int number[][])
+    {
+        for(int i=0; i<size; i++)
+        {
+            for(int j=0;j<size; j++)
+            {
+                if(i==j && (i==0 || i==size-1) )
+                {
+                    if(number[i][j]==2)
+                    {
+                        //calling corner burst
+
+                    }
+
+                }
+                else if(i==0 || i==size-1 || j==0 ||j==size-1)
+                {
+                    if(number[i][j]==3)
+                    {
+                        //calling side burst
+
+                    }
+
+                }
+                else{
+                    if(number[i][j]==4)
+                    {
+                        //calling center burst
+                    }
+
+                }
+ 
+            }
+        }
+    }
 
 
 
@@ -76,7 +110,6 @@ class chainrxn
     public static void main(String[] args)
     {
         Scanner sc=new Scanner(System.in);
-
         //gamespace development 
         System.out.println("Enter the size of the matrix");
         int n=sc.nextInt();
@@ -111,21 +144,18 @@ class chainrxn
             p2="R";
         }
 
-        boolean c= cx.see(gamespace);
-        System.out.println(c);
-        System.out.println(cx.size);
-        
+        boolean c= cx.see(gamespace);    
 
         while(c == false)
         {
             System.out.println("Player 1 enter the values");
             int x =sc.nextInt();
             int y =sc.nextInt();
-            cx.setvalue(gamespace,p1,x,y);
+            cx.setvalue(gamespace,num,p1,x,y);
             System.out.println("Player 2 enter the values");
             int p =sc.nextInt();
             int q =sc.nextInt();
-            cx.setvalue(gamespace,p2,p,q);
+            cx.setvalue(gamespace,num,p2,p,q);
             c= cx.see(gamespace);
             cx.display(gamespace, num);
         }
