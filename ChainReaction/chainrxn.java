@@ -21,6 +21,7 @@ class chainrxn
     {
         arr[x-1][y-1]= val;
         number[x-1][y-1]++;
+        check(arr, number);
     }
 
 
@@ -54,40 +55,62 @@ class chainrxn
         }
             
     }
+   
     void check(String arr[][],int number[][])
     {
         for(int i=0; i<size; i++)
         {
             for(int j=0;j<size; j++)
             {
-                if(i==j && (i==0 || i==size-1) )
+                if(number[i][j]==4)
                 {
-                    if(number[i][j]==2)
-                    {
-                        //calling corner burst
-
-                    }
-
+                number[i][j]=1;
+                if(i>=1){
+                    if(arr[i-1][j].equals(arr[i][j]))
+                    {number[i-1][j]++;}
+                    else{number[i-1][j]=1;}
+                    arr[i-1][j]=arr[i][j];
                 }
-                else if(i==0 || i==size-1 || j==0 ||j==size-1)
-                {
-                    if(number[i][j]==3)
-                    {
-                        //calling side burst
-
-                    }
-
+                if(j>=1){
+                    if(arr[i][j-1].equals(arr[i][j]))
+                    {number[i][j-1]++;}
+                    else{number[i][j-1]=1;}
+                    arr[i][j-1]=arr[i][j];
                 }
-                else{
-                    if(number[i][j]==4)
-                    {
-                        //calling center burst
-                    }
+                if(j<=size-2){
+                    if(arr[i][j+1].equals(arr[i][j]))
+                    {number[i][j+1]++;}
+                    else{number[i][j+1]=1;}
+                    arr[i][j+1]=arr[i][j];
+                }
+                if(i<=size-2){
+                    if(arr[i+1][j].equals(arr[i][j]))
+                    {number[i+1][j]++;}
+                    else{number[i+1][j]=1;}
+                    arr[i+1][j]=arr[i][j];
+                }
 
+                // else{
+                //     if(number[i][j]==4)
+                //     {
+                //         //calling center burst
+                //         number[i][j]=1;
+            
+                //         number[i][j-1]++;
+                //         arr[i][j-1]=arr[i][j];
+                //         
+                //         number[i][j+1]++;
+                //         arr[i][j+1]=arr[i][j];
+                //         number[i+1][j]++;
+                //         arr[i+1][j]= arr[i][j];
+                //     }
+
+                // }
                 }
  
             }
         }
+        display(arr, number);
     }
 
 
@@ -152,26 +175,17 @@ class chainrxn
             int x =sc.nextInt();
             int y =sc.nextInt();
             cx.setvalue(gamespace,num,p1,x,y);
+            System.out.println();
             System.out.println("Player 2 enter the values");
             int p =sc.nextInt();
             int q =sc.nextInt();
             cx.setvalue(gamespace,num,p2,p,q);
+            System.out.println();
             c= cx.see(gamespace);
-            cx.display(gamespace, num);
         }
         if(c == true){
             System.exit(0);
         }
-        
-        
-            
-
-
-
-
-
-
-
         
     }
      
