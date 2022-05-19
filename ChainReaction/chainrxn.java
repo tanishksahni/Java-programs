@@ -21,7 +21,7 @@ class chainrxn
     {
         arr[x-1][y-1]= val;
         number[x-1][y-1]++;
-        check(arr, number);
+        checknum(arr, number);
     }
 
 
@@ -55,15 +55,39 @@ class chainrxn
         }
             
     }
-   
-    void check(String arr[][],int number[][])
+    void checknum(String arr[][], int number[][])
     {
         for(int i=0; i<size; i++)
         {
-            for(int j=0;j<size; j++)
+            for(int  j=0; j>size; j++)
             {
-                if(number[i][j]==4)
+                if((i==0 && j==0)|| (i==size-1 && j==0) || (i==0 && j==size-1) || (i==size-1 && j==size-1))
                 {
+                    if(number[i][j]==2)
+                        check(arr, number,i,j);
+                }
+                else if ((i>0 && j>0) || (i<size-1 && j<size-1))
+                {
+                    if(number[i][j]==4)
+                        check(arr, number,i,j);
+                }
+                else{
+                    if(number[i][j]==3)
+                        check(arr, number,i,j);
+                }
+
+            }
+        }
+        display(arr, number);
+    }
+   
+    void check(String arr[][],int number[][],int i ,int j)
+    {
+        // for(int i=0; i<size; i++)
+        // {
+        //     for(int j=0;j<size; j++)
+        //     {
+                
                 number[i][j]=1;
                 if(i>=1){
                     if(arr[i-1][j].equals(arr[i][j]))
@@ -89,44 +113,15 @@ class chainrxn
                     else{number[i+1][j]=1;}
                     arr[i+1][j]=arr[i][j];
                 }
-
-                // else{
-                //     if(number[i][j]==4)
-                //     {
-                //         //calling center burst
-                //         number[i][j]=1;
-            
-                //         number[i][j-1]++;
-                //         arr[i][j-1]=arr[i][j];
-                //         
-                //         number[i][j+1]++;
-                //         arr[i][j+1]=arr[i][j];
-                //         number[i+1][j]++;
-                //         arr[i+1][j]= arr[i][j];
-                //     }
-
-                // }
-                }
+                check(arr, number, i, j);
  
-            }
-        }
-        display(arr, number);
+        //     }
+        // }
+         display(arr, number);
     }
 
 
 
-    //mid segment
-    void midburst(){
-
-    }
-    //side
-    void sideburst(){
-
-    }
-    //for corners
-    void cornerburst(){
-
-    }
     
    
    
