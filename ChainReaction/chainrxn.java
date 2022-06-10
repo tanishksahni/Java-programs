@@ -113,6 +113,8 @@ class chainrxn
                     else{number[i+1][j]=1;}
                     arr[i+1][j]=arr[i][j];
                 }
+                i=0;
+                j=0;
                 check(arr, number, i, j);
  
         //     }
